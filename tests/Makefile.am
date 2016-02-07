@@ -1,10 +1,9 @@
 ## Process this file with automake to produce Makefile.in
 
-TESTS = check_money
-check_PROGRAMS = check_money
-check_money_SOURCES = check_money.c $(top_builddir)/src/money.h
-check_money_CFLAGS = @CHECK_CFLAGS@
-check_money_LDFLAGS = -lcheck_pic -lpthread -lrt -lm 
-check_money_LDADD = $(top_builddir)/src/libmoney.la @CHECK_LIBS@
+TESTS = check_auto_apt
+check_PROGRAMS = check_auto_apt
+check_auto_apt_SOURCES = check_auto_apt.c
+check_auto_apt_CFLAGS = @CHECK_CFLAGS@ -L/usr/local/lib
+check_auto_apt_LDFLAGS = -lcheck_pic -lpthread -lrt -lm -lcheck
 
 ACLOCAL_AMFLAGS = -I m4

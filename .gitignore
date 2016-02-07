@@ -36,4 +36,7 @@ tests/check_money.c
 tests/check_money.log
 tests/check_money.trs
 tests/test-suite.log
-
+tests/check_auto_apt
+tests/check_auto_apt-check_auto_apt.o
+tests/check_auto_apt.log
+tests/check_auto_apt.trs
