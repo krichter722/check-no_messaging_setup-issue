@@ -1,0 +1,19 @@
+language: c
+before_script:
+- sudo apt-get update
+- sudo apt-get build-dep check
+# provides necessary `makeinfo`; don't install `check` because it seems to cause path confusion (and make sure that it isn't installed)
+- sudo apt-get install texinfo
+- sudo apt-get remove check
+# `make check` doesn't need to be executed because `check` already uses travis-ci.org
+- git clone https://github.com/libcheck/check.git && cd check && autoreconf -i -v -f && ./configure && make -j24 && sudo make install && sudo ldconfig && cd ..
+script:
+# work around `autoconf` bug:
+- mkdir m4
+- export ACLOCAL_PATH=/usr/local/share/aclocal
+- autoreconf -i -v -f
+- ./configure
+- make
+- make check
+after_failure:
+- cat tests/test-suite.log
