@@ -10,9 +10,11 @@ AC_CONFIG_AUX_DIR([build-aux])
 
 # fairly severe build strictness
 # change foreign to gnu or gnits to comply with gnu standards
-AM_INIT_AUTOMAKE([-Wall -Werror foreign 1.9.6])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects 1.9.6])
 AM_PROG_AR
-LT_INIT
+
+LT_INIT # needs to be after AM_PROGS_AR
+AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
@@ -25,7 +27,8 @@ AC_PROG_LIBTOOL
 # CHECK_LIBS accordingly.  
 #  AM_PATH_CHECK([MINIMUM-VERSION,
 #                [ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND]]])
-AM_PATH_CHECK()
+#AM_PATH_CHECK()
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4])
 
 # Checks for header files.
 AC_HEADER_STDC
@@ -37,9 +40,9 @@ AC_CHECK_HEADERS([stdlib.h])
 AC_FUNC_MALLOC
 
 # Output files
-AC_CONFIG_HEADERS([config.h])
 
-AC_CONFIG_FILES([Makefile
+AC_CONFIG_FILES([pkgcdb/Makefile
+                 Makefile
                  tests/Makefile])
 
 AC_OUTPUT
