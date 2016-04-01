@@ -24,6 +24,7 @@ auto_apt_suite(void) {
         return s;
 }
 
+/*
 int main(void) {
         int number_failed;
         Suite *s = auto_apt_suite();
@@ -32,4 +33,9 @@ int main(void) {
         number_failed = srunner_ntests_failed(sr);
         srunner_free(sr);
         return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+}
+*/
+
+int main(void) {
+        ck_assert_int_eq(0, 1);
 }
